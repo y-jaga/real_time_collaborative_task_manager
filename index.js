@@ -10,7 +10,6 @@ const { authenticateJWT } = require("./middleware/authenticateJWT.js");
 
 const app = express();
 
-
 //Create a http server
 const httpServer = http.createServer(app);
 
@@ -67,7 +66,4 @@ app.use("/todos", authenticateJWT, todoRoute);
 //collaborator routes
 app.use("/api/todos", authenticateJWT, collaboratorRoutes);
 
-const PORT = process.env.PORT || 5001;
-httpServer.listen(PORT, () => {
-  console.log(`Server is running on PORT ${PORT}`);
-});
+module.exports = { app, httpServer };

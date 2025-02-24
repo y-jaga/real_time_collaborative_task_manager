@@ -7,7 +7,7 @@ dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// "username" : "yogesh", "jaga", "deepkia"
+// "username" : "yogesh", "jaga", "deepika"
 //  "email" : "yogeshjaga123@gmail.com", "jagayogesh4556@gmail.com", "deepikaxj4@gmail.com"
 // "password" : "yogesh123", "jaga123", "deepkia123"
 

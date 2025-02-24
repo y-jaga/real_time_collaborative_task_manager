@@ -55,7 +55,7 @@ router.get("/", async (req, res) => {
 
 /**
  * PUT /todos/:id
- * Update a task (e.g., update title, status, etc.).
+ * Update a task (e.g., update title, status, etc).
  * Add permission checks to ensure that only authorized(creator) users update the task.
  */
 
@@ -67,6 +67,10 @@ router.put("/:id", async (req, res) => {
 
     const todo = await ToDo.findById(todoId);
 
+    if (!todo) {
+      return res.status(404).json({ error: "Task not found." });
+    }
+
     if (todo.createdBy.toString() !== userId.toString()) {
       return res.status(401).json({
         error:
@@ -77,10 +81,6 @@ router.put("/:id", async (req, res) => {
     const updatedUser = await ToDo.findByIdAndUpdate(todoId, updatedData, {
       new: true,
     });
-
-    if (!updatedUser) {
-      return res.status(404).json({ error: "Task not found." });
-    }
 
     res
       .status(201)
@@ -115,7 +115,7 @@ router.delete("/:id", async (req, res) => {
     }
 
     await ToDo.findByIdAndDelete(todoId);
-    res.status(204).json({ message: "Task deleted successfully." });
+    res.status(204).json();
   } catch (error) {
     res.status(500).json({ error: "Server error", error: error.message });
   }

@@ -8,7 +8,7 @@ const router = require("express").Router();
  * Share a task with another user.
  * Request body should include:
  *   - userId: ID of the user to share the task with
- *   - role (optional): Role for the collaborator (default: "collaborator")
+ *   - role : Role for the collaborator (default: "collaborator")
  */
 
 router.post("/:id/share", async (req, res) => {
@@ -66,7 +66,7 @@ router.get("/shared", async (req, res) => {
       return res.status(404).json({ error: "No tasks shared." });
     }
 
-    res.status(200).json({ "Task shared": collaborations });
+    res.status(200).json({ collaborations });
   } catch (error) {
     res.status(500).json({ error: "Server error", error: error.message });
   }
